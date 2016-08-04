@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # vim:fileencoding=UTF-8:ts=4:sw=4:sta:et:sts=4:ai
 from __future__ import (unicode_literals, division, absolute_import,
                         print_function)
@@ -22,9 +22,9 @@ class RecollFulltextSearch(InterfaceActionBase):
     '''
     name                = 'Recoll Full Text Search'
     description         = 'A plugin to do a full text search with recoll'
-    supported_platforms = ['linux']
+    supported_platforms = ['linux', 'windows']
     author              = 'Stanislav Kazmin'
-    version             = (1, 0, 1)
+    version             = (1, 0, 2)
     minimum_calibre_version = (0, 9, 25)
 
     #: This field defines the GUI plugin class that contains all the code

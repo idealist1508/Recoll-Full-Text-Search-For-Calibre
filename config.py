@@ -7,7 +7,7 @@ __license__   = 'GPL v3'
 __copyright__ = '2013, Stanislav Kazmin'
 __docformat__ = 'restructuredtext en'
 
-from PyQt4.Qt import QWidget, QVBoxLayout, QLabel, QLineEdit
+from PyQt5.Qt import QWidget, QVBoxLayout, QLabel, QLineEdit
 
 from calibre.utils.config import JSONConfig
 

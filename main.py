@@ -14,7 +14,7 @@ if False:
     get_icons = get_resources = None
 
 
-from PyQt4.Qt import (QDialog, QVBoxLayout, QPushButton, QMessageBox, QLabel, 
+from PyQt5.Qt import (QDialog, QVBoxLayout, QPushButton, QMessageBox, QLabel, 
                       QLineEdit, QComboBox,  QCompleter,  QMainWindow,  QWidget,  QTextEdit)
 from calibre_plugins.recoll_fulltext_search.config import prefs
 

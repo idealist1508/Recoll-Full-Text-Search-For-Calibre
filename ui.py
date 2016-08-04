@@ -26,7 +26,7 @@ class RecollFulltextSearchPlugin(InterfaceAction):
     # shortcut. Remember that currently calibre has no central management for
     # keyboard shortcuts, so try to use an unusual/unused shortcut.
     action_spec = ('Recoll Full Text Search', None,
-            'Run the Recoll Full Text Search', 'Ctrl+Shift+F1')
+            'Run the Recoll Full Text Search', 'Ctrl+Shift+F11')
 
     def genesis(self):
         # This method is called once per plugin, do initial setup here
