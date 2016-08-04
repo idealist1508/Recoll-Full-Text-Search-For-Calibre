@@ -1,0 +1,50 @@
+Recoll Full Text Search Plugin
+==============================
+
+Created by Stanislav Kazmin (April 2013)
+
+Requires Calibre >= 0.9.25 (actually I think, it will run on much earlier versions)
+
+Runs only on unix systems (uses recoll which is only available for linux).
+
+This Plugin uses Recoll as a backend program to do a full text search inside the whole library and then display the matches in calibre.
+
+It is build very simple and has only a few self explaining features.
+
+Install
+==============================
+
+Steps to get this plugin working:
+1. install thins plugin as a usual on in calibre
+2. make a new custom column in calibre
+2.1. Go to Preferencies - add you own columns
+2.2. create a new column with:
+2.2.1. Lookup name: cid
+2.2.2. Column heading: CID
+2.2.3. Column type: Column built from other columns
+2.2.4. Template: {id}
+2.2.5. Sort/Search column by: number
+3. install recoll on you system
+4. copy the directory "recollFullTextSearchPlugin" from the zip file to the calibre config plugins directory (usually on unix systems: $HOME/.config/calibre/plugins
+5. When you start calibre, a new icon for the plugin can be seen in the panel
+6. before use the the plugin for the first time, make sure the paths for the plugin are set right (check out plugins preferences for do so)
+7. Make create a database for recoll using the button in the plugin (can take a lot of time for the first time)
+8. Thats it
+
+
+The recoll config file is set up to not search for jpg png json or opf files so you should not get worng results.
+The recoll database is saved in the config directory of calibre so you can use recoll as normal program with an second database and other conf file (mostly the standard one).
+
+I do not know exactly, when the ids for the books are changed by calibre so I recommend to make a database update quite often and from time to time make a new database. Unless you do not add new books ;)
+
+I am not a programmer but a physician so it was a hard work for me to get everything done. I think, if someone has more time, there are a lot of things to improve. So feel free to change this plugin on you own. I am not in intention to do so in the next time.
+
+For information about recoll look at: http://www.lesbonscomptes.com/recoll/
+
+
+Changes since 1.0.0
+==============================
+1.0.1 
+- changed search window to have a list of last searches
+- new about window
+- new message when updating the recoll library
