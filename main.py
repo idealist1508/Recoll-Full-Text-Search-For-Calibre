@@ -159,10 +159,14 @@ class RecollFulltextSearchDialog(QDialog):
     def makeDatabase(self):
         '''Runs recollindex outside calibre like in a terminal. 
         Look for recollindex for more information about the flags and options'''
-        self.cmd = 'LD_LIBRARY_PATH="" ' + prefs['pathToRecoll'] + '/recollindex -c ' + prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin'
+        self.cmd = [prefs['pathToRecoll'] + '/recollindex', '-c', prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin']
+        #TODO: Fix for Linux
+        #self.cmd = 'LD_LIBRARY_PATH="" ' + prefs['pathToRecoll'] + '/recollindex -c ' + prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin'
         if self.replaceDatabase == True :
-            self.cmd += ' -z'
-        self.p = Popen(self.cmd,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
+            self.cmd += [' -z']
+        self.p = Popen(self.cmd,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+        # TODO: Was close_fds nessesary? check it on linux
+        #self.p = Popen(self.cmd,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
 
         box = QMessageBox()
         box.about(self, 'Please read! \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t','Depending on you library size this operation can take a lot of time.\nThe process runs outside calibre so you can use or close it, but do not use this plugin.\nFor now there is no information about when recoll finishs,\nso look up, whether a recoll of recollindex process is running on you system.')
@@ -172,9 +176,13 @@ class RecollFulltextSearchDialog(QDialog):
         Look for recollindex for more information about the flags and options'''
         self.searchText = str(self.searchTextWindow.currentText())# search text from the plugin gui
         self.searchTextWindow.insertItem(0, self.searchText)
-        self.cmd = 'LD_LIBRARY_PATH="" ' + prefs['pathToRecoll'] + '/recoll -c ' + prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin -b -t '
-        self.cmdString = self.cmd + self.searchText
-        self.p = Popen(self.cmdString,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
+        #TODO: Fix Linux
+        #self.cmd = 'LD_LIBRARY_PATH="" ' + prefs['pathToRecoll'] + '/recoll -c ' + prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin -b -t '
+        self.cmd = [prefs['pathToRecoll'] + '/recoll', '-c', prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin', '-b', '-t']
+        self.cmdString = self.cmd + [self.searchText]
+        # TODO: Was close_fds nessesary? check it on linux
+        #self.p = Popen(self.cmdString,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
+        self.p = Popen(self.cmdString,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
         self.output = self.p.stdout.read()# output from the recoll search
         self.found = ''
         self.found = re.findall(r" \((\d+)\)\/", self.output)# regex to find the calibre ids in the folder names

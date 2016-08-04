@@ -1,10 +1,10 @@
 from subprocess import Popen, PIPE, STDOUT
 import re
 
-text = 'test'
-cmd = "LD_LIBRARY_PATH='' recoll -c /home/stanislav/recollplugin -b -t " + text
+text = 'wpf'
+cmd = ['C:/Program Files (x86)/Recoll/recoll', '-c', 'c:/Users/spolonski/AppData/Roaming/calibre/plugins/recollFullTextSearchPlugin', '-b', '-t', text]
 #cmd2 = "recollindex -c /home/stanislav/recollplugin -z"
-p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
+p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 output = p.stdout.read()
 #print "work"
 #p.wait()
