@@ -184,19 +184,21 @@ class RecollFulltextSearchDialog(QDialog):
         #self.p = Popen(self.cmdString,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
         self.p = Popen(self.cmdString,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
         self.output = self.p.stdout.read()# output from the recoll search
-        self.found = ''
-        self.found = re.findall(r" \((\d+)\)\/", self.output)# regex to find the calibre ids in the folder names
-
-        
+     
+        self.found = list(set(re.findall(r" \((\d+)\)\/[^/]*", self.output)))# regex to find the calibre ids in the folder names
+     
         self.wholeString = ''
         if len(self.found) == 0 :
             self.outputWindow.setText('no books found' + ' for ' + self.searchText)
         else :
-            self.wholeString = '#cid:'
-            for elem in self.found:
+            self.wholeString = 'id:'
+            for elem in self.found[:300]:
                 self.wholeString += '=' + elem + ' or '
             self.wholeString = self.wholeString[:-4]
-            self.outputWindow.setText(str(len(self.found)) + ' books found' + ' for ' + self.searchText)
+            if len(self.found) > 300 :
+                self.outputWindow.setText(str(len(self.found)) + ' books found' + ' for ' + self.searchText+ '. Only the first 300 books are shown')
+            else :
+                self.outputWindow.setText(str(len(self.found)) + ' books found' + ' for ' + self.searchText)
 
         if self.searchAdd == True :
             self.oldFilter = self.gui.search.text()
