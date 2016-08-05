@@ -191,12 +191,11 @@ class RecollFulltextSearchDialog(QDialog):
         if len(self.found) == 0 :
             self.outputWindow.setText('no books found' + ' for ' + self.searchText)
         else :
-            self.wholeString = 'id:'
-            for elem in self.found[:300]:
-                self.wholeString += '=' + elem + ' or '
+            for elem in self.found[:400]:
+                self.wholeString += 'id:=' + elem + ' or '
             self.wholeString = self.wholeString[:-4]
-            if len(self.found) > 300 :
-                self.outputWindow.setText(str(len(self.found)) + ' books found' + ' for ' + self.searchText+ '. Only the first 300 books are shown')
+            if len(self.found) > 400 :
+                self.outputWindow.setText(str(len(self.found)) + ' books found' + ' for ' + self.searchText+ '. Only the first 400 books are shown')
             else :
                 self.outputWindow.setText(str(len(self.found)) + ' books found' + ' for ' + self.searchText)
 
