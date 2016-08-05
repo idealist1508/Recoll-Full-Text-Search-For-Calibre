@@ -29,6 +29,7 @@ Steps to get this plugin working:
 - custom column is not necessary
 - only unique books are shown
 - Maximum number of Books is limited to 400 due to maximum recursion depth exceeded in the search interface
+
 ##1.0.1 
 - changed search window to have a list of last searches
 - new about window
