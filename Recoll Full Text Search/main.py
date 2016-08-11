@@ -164,7 +164,7 @@ class RecollFulltextSearchDialog(QDialog):
         #self.cmd = 'LD_LIBRARY_PATH="" ' + prefs['pathToRecoll'] + '/recollindex -c ' + prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin'
         if self.replaceDatabase == True :
             self.cmd += [' -z']
-        self.p = Popen(self.cmd,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+        self.p = Popen(self.cmd,  shell=False)
         # TODO: Was close_fds nessesary? check it on linux
         #self.p = Popen(self.cmd,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
 
