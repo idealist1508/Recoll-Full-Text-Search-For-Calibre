@@ -17,7 +17,7 @@ Steps to get this plugin working:
 
 1. install thins plugin as a usual on in calibre
 3. install recoll on you system
-4. copy the directory "recollFullTextSearchPlugin" from the zip file to the calibre config plugins directory (usually on unix systems: $HOME/.config/calibre/plugins
+4. copy the directory "recollFullTextSearchPlugin" from the zip file to the calibre config plugins directory (usually on unix systems: $HOME/.config/calibre/plugins, on windows %appdata%\calibre\plugins)
 5. When you start calibre, a new icon for the plugin can be seen in the panel
 6. before use the the plugin for the first time, make sure the paths for the plugin are set right (check out plugins preferences for do so)
 7. Make create a database for recoll using the button in the plugin (can take a lot of time for the first time)
