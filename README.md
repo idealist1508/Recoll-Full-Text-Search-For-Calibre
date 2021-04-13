@@ -23,7 +23,9 @@ Steps to get this plugin working:
 7. Make create a database for recoll using the button in the plugin (can take a lot of time for the first time)
 8. Thats it
 
-#Changes since 1.0.0
+#Changlog since 1.0.0
+##1.0.3
+- Update to work with python3
 ##1.0.2
 - Works on windows
 - custom column is not necessary
