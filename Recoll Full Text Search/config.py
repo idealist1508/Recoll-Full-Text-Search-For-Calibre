@@ -60,7 +60,7 @@ class ConfigWidget(QWidget):
         self.labelRecoll.setBuddy(self.pathToRecollSetting)
 
     def save_settings(self):
-        prefs['pathToLibrary'] = unicode(self.pathToLibrarySetting.text())
-        prefs['pathToCofig'] = unicode(self.pathToCofigSetting.text())
-        prefs['pathToRecoll'] = unicode(self.pathToRecollSetting.text())
+        prefs['pathToLibrary'] = self.pathToLibrarySetting.text()
+        prefs['pathToCofig'] = self.pathToCofigSetting.text()
+        prefs['pathToRecoll'] = self.pathToRecollSetting.text()
 

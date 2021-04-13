@@ -20,6 +20,7 @@ from calibre_plugins.recoll_fulltext_search.config import prefs
 
 from subprocess import Popen, PIPE, STDOUT
 import re
+import platform
 
 class AboutWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -134,7 +135,7 @@ class RecollFulltextSearchDialog(QDialog):
         
         self.box = AboutWindow()
         self.box.setWindowTitle("About the Recoll Full Text Search Plugin")
-        self.box.textWindow.setText(text)
+        self.box.textWindow.setText(text.decode('utf-8'))
         self.box.textWindow.setReadOnly(True)
         self.box.resize(600, 500)
         self.box.show()
@@ -160,11 +161,14 @@ class RecollFulltextSearchDialog(QDialog):
         '''Runs recollindex outside calibre like in a terminal. 
         Look for recollindex for more information about the flags and options'''
         self.cmd = [prefs['pathToRecoll'] + '/recollindex', '-c', prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin']
-        #TODO: Fix for Linux
-        #self.cmd = 'LD_LIBRARY_PATH="" ' + prefs['pathToRecoll'] + '/recollindex -c ' + prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin'
         if self.replaceDatabase == True :
             self.cmd += [' -z']
-        self.p = Popen(self.cmd,  shell=False)
+
+        if platform.system() == 'Windows':
+            self.p = Popen(self.cmd,  shell=False)
+        else:
+          self.p = Popen(' '.join(self.cmd),  shell=True)
+
         # TODO: Was close_fds nessesary? check it on linux
         #self.p = Popen(self.cmd,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
 
@@ -176,14 +180,16 @@ class RecollFulltextSearchDialog(QDialog):
         Look for recollindex for more information about the flags and options'''
         self.searchText = str(self.searchTextWindow.currentText())# search text from the plugin gui
         self.searchTextWindow.insertItem(0, self.searchText)
-        #TODO: Fix Linux
-        #self.cmd = 'LD_LIBRARY_PATH="" ' + prefs['pathToRecoll'] + '/recoll -c ' + prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin -b -t '
         self.cmd = [prefs['pathToRecoll'] + '/recoll', '-c', prefs['pathToCofig'] + '/plugins/recollFullTextSearchPlugin', '-b', '-t']
         self.cmdString = self.cmd + [self.searchText]
         # TODO: Was close_fds nessesary? check it on linux
         #self.p = Popen(self.cmdString,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
-        self.p = Popen(self.cmdString,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
-        self.output = self.p.stdout.read()# output from the recoll search
+        if platform.system() == 'Windows':
+          self.p = Popen(self.cmdString,  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+        else:
+          self.p = Popen(' '.join(self.cmdString),  shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+
+        self.output = self.p.stdout.read().decode('utf-8')# output from the recoll search
      
         self.found = list(set(re.findall(r" \((\d+)\)\/[^/]*", self.output)))# regex to find the calibre ids in the folder names
      

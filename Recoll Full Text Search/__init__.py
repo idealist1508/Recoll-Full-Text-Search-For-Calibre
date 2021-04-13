@@ -24,7 +24,7 @@ class RecollFulltextSearch(InterfaceActionBase):
     description         = 'A plugin to do a full text search with recoll'
     supported_platforms = ['linux', 'windows']
     author              = 'Stanislav Kazmin'
-    version             = (1, 0, 2)
+    version             = (1, 0, 3)
     minimum_calibre_version = (0, 9, 25)
 
     #: This field defines the GUI plugin class that contains all the code
