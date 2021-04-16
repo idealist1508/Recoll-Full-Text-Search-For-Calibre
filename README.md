@@ -11,7 +11,7 @@ This Plugin uses [Recoll](http://www.lesbonscomptes.com/recoll/) as a backend pr
 
 It is build very simple and has only a few self explaining features.
 
-#Install
+# Install
 
 Steps to get this plugin working:
 
@@ -23,16 +23,17 @@ Steps to get this plugin working:
 7. Make create a database for recoll using the button in the plugin (can take a lot of time for the first time)
 8. Thats it
 
-#Changlog since 1.0.0
-##1.0.3
+# Changlog since 1.0.0
+
+## 1.0.3
 - Update to work with python3
-##1.0.2
+## 1.0.2
 - Works on windows
 - custom column is not necessary
 - only unique books are shown
 - Maximum number of Books is limited to 400 due to maximum recursion depth exceeded in the search interface
 
-##1.0.1 
+## 1.0.1 
 - changed search window to have a list of last searches
 - new about window
 - new message when updating the recoll library
