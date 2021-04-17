@@ -4,9 +4,6 @@ Created by [Stanislav Kazmin (April 2013)](http://www.mobileread.com/forums/show
 
 Modified by idealist1508 (Aug 2016)
 
-Requires Calibre >= 2.63 (actually I think, it will run on earlier versions)
-Runs only on windows and I hope on unix systems.
-
 This Plugin uses [Recoll](http://www.lesbonscomptes.com/recoll/) as a backend program to do a full text search inside the whole library and then display the matches in [calibre](http://calibre-ebook.com/).
 
 It is build very simple and has only a few self explaining features.
